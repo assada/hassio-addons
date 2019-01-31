@@ -1,0 +1,70 @@
+{
+  "name": "Mopidy",
+  "version": "1.1.2",
+  "slug": "mopidy",
+  "description": "Mopidy music server",
+  "url": "https://github.com/assada/hassio-addons/tree/master/mopidy",
+  "startup": "application",
+  "boot": "auto",
+  "image": "assada/mopidy-{arch}",
+  "arch": [
+    "armhf",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "audio": true,
+  "options": {
+    "local_scan": false,
+    "mount": {
+      "enabled": false,
+      "disk": "/devices/sda1",
+      "filesystem": "auto",
+      "point": "/share/storage"
+    },
+    "telegram": {
+      "enabled": false,
+      "token": "",
+      "admin": "userName",
+      "destination": "/share/storage/telegram"
+    },
+    "options": []
+  },
+  "schema": {
+    "local_scan": "bool?",
+    "mount": {
+      "enabled": "bool?",
+      "disk": "str?",
+      "filesystem": "str?"
+    },
+    "telegram": {
+      "enabled": "bool?",
+      "token": "str?",
+      "admin": "str?",
+      "destination": "str?"
+    },
+    "options": [
+      {
+        "name": "str",
+        "value": "str"
+      }
+    ]
+  },
+  "devices": [
+    "/dev/snd:/dev/snd:rwm",
+    "/dev/:/devices/:rwm"
+  ],
+  "ports": {
+    "6680/tcp": 6680,
+    "6600/tcp": 6600
+  },
+  "map": [
+    "share:rw"
+  ],
+  "webui": "http://[HOST]:[PORT:6680]",
+  "host_ipc": true,
+  "apparmor": false,
+  "privileged": [
+    "SYS_ADMIN"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+    "build_from": {
+	"armhf" : "balenalib/armv7hf-alpine:edge-run",
+	"aarch64": "balenalib/aarch64-alpine:edge-run",
+	"amd64" : "alpine:edge",
+	"i386" : "balenalib/i386-alpine:edge-run"
+    }
+}

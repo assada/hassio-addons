@@ -1,0 +1,19 @@
+{
+    "name": "Device List",
+    "version": "0.1.0",
+    "slug": "device-list",
+    "description": "Device list addon",
+    "url": "https://github.com/assada/hassio-addons/tree/master/device-list",
+    "startup": "once",
+    "boot": "manual",
+    "image": "assada/{arch}-device-list",
+    "options": {"pattern": "sd*"},
+    "schema": {
+	   "pattern": "str?"
+    },
+    "devices": ["/dev/:/devices/:rwm"],
+    "privileged": [
+        "SYS_ADMIN"
+    ],
+    "apparmor": false
+}

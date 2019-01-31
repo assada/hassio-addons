@@ -1,0 +1,8 @@
+{
+    "build_from": {
+	"armhf" : "balenalib/armv7hf-alpine:run",
+	"aarch64": "bestlibre/aarch64-alpine-base:latest",
+	"amd64" : "debian:stretch",
+	"i386" : "i386/debian:stretch"
+    }
+}
