@@ -28,6 +28,7 @@ RUN apk update && apk add --no-cache --virtual .build-deps \
         libffi-dev \
         ffmpeg \
         py-cffi \
+        bash \
  && pip install -U pip \
  && pip install \
         cffi \

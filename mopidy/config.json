@@ -1,6 +1,6 @@
 {
   "name": "Mopidy",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "slug": "mopidy",
   "description": "Mopidy music server",
   "url": "https://github.com/assada/hassio-addons/tree/master/mopidy",
@@ -15,7 +15,7 @@
   ],
   "audio": true,
   "options": {
-    "local_scan": false,
+    "local_scan": true,
     "mount": {
       "enabled": false,
       "disk": "/devices/sda1",
@@ -61,7 +61,7 @@
   "map": [
     "share:rw"
   ],
-  "webui": "http://[HOST]:[PORT:6680]",
+  "webui": "http://[HOST]:[PORT:6680]/moped/",
   "host_ipc": true,
   "apparmor": false,
   "privileged": [
