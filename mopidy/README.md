@@ -172,7 +172,7 @@ This a working configuration example, with Google Music and local scan.
 ```
 ### License
 
-The OctoberCMS platform is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ### Contributing
 
