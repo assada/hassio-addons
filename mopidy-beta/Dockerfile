@@ -1,0 +1,74 @@
+ARG BUILD_FROM=hassioaddons/base:latest
+# hadolint ignore=DL3006
+FROM ${BUILD_FROM}
+
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Setup base
+ARG BUILD_ARCH=amd64
+# hadolint ignore=DL3003
+
+ENV LANG C.UTF-8
+
+#Install mopidy
+RUN apk add --no-cache build-base git \
+    && apk add --no-cache \
+               ca-certificates \
+               gst-plugins-bad \
+               gst-plugins-good \
+               gst-plugins-ugly \
+               libxml2-dev \
+               libxslt-dev \
+               zlib-dev \
+       	       jq \
+               py-gst \
+               py-pip \
+               python \
+               python-dev \
+               libressl-dev \
+               make \
+               ntfs-3g \
+               fuse \
+               libffi \
+               libffi-dev \
+               ffmpeg \
+               py-cffi \
+               bash \
+               jpeg-dev \
+               zlib-dev \
+               freetype-dev \
+               lcms2-dev \
+               openjpeg-dev \
+               tiff-dev \
+               tk-dev \
+               tcl-dev \
+               harfbuzz-dev \
+               fribidi-dev \
+    && pip install -U pip \
+    && pip install \
+            cffi \
+            mopidy \
+            pycrypto \
+            oauth2client \
+            pyasn1 \
+            Mopidy-Moped \
+            Mopidy-GMusic \
+            Mopidy-Scrobbler \
+            Mopidy-SomaFM \
+            Mopidy-Local-SQLite \
+            Mopidy-Iris
+RUN git clone https://github.com/assada/tg-music-downloader.git \
+ && pip install -r /tg-music-downloader/requirements.txt \
+ && mkdir -p -m 777 /devices \
+ && apk del .build-deps
+
+COPY mopidy.conf /var/lib/mopidy/.config/mopidy/mopidy.conf
+
+COPY run.sh /
+COPY run-bot.sh /
+RUN chmod a+x /run.sh \
+&& chmod a+x /run-bot.sh
+
+EXPOSE 6600 6680
+CMD [ "/run.sh" ]
